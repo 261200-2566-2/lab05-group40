@@ -25,6 +25,8 @@ public class Main {
         Warrior.StoneWall(Boss);
 
         Boss.Showhp();
+
+        Warrior.showCurrentMana();
     }
 }
 
