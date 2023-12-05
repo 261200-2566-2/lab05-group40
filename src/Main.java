@@ -1,5 +1,4 @@
 
-
 public class Main {
     public static void main(String[] args) {
         RPGCharacter.Mage fireMage = new RPGCharacter.Mage("Mage");
