@@ -16,7 +16,7 @@ public class RPGAccessory {
         if(equipped){
             System.out.println("This item is equipped");
         }else{
-            System.out.println("This item is unrquipped");
+            System.out.println("This item is unequipped");
         }
     }
 
