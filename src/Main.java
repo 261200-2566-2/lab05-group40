@@ -11,6 +11,7 @@ public class Main {
         void updateStat();
         double calculateMaxSpeed();
         void attack(Character target);
+
     }
 
     //  Accessories interfaces

@@ -27,6 +27,7 @@ public class RPGCharacter {
     public void levelUp() {
         level++;
         updateStat();
+        
     }
 
     public void takeDamage(double dmg) {
