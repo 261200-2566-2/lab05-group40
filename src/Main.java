@@ -1,4 +1,4 @@
-public class Main2 {
+public class Main {
     public static void main(String[] args) {
         RPGCharacter.Mage fireMage = new RPGCharacter.Mage("Mage");
         RPGCharacter.enemy Boss = new RPGCharacter.enemy("BaaBoo");
