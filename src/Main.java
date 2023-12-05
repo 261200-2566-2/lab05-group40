@@ -1,6 +1,6 @@
 public class Main {
 
-    public interface RPGCharacter {
+    public interface Character {
         void levelUp();
         void takeDamage(double dmg);
         void showName();
@@ -10,11 +10,12 @@ public class Main {
         void updateRunSpeed();
         void updateStat();
         double calculateMaxSpeed();
+        void attack(Character target);
     }
 
-    // RPG Accessories interfaces
+    //  Accessories interfaces
 
-    public interface RPGAccessory {
+    public interface Accessory {
         void levelUp();
         void showLevel();
         double calculateRunSpeedDecrease(int characterLevel);
@@ -23,9 +24,10 @@ public class Main {
     }
 
     // Concrete Mage Character
-    public static class Mage implements RPGCharacter {
+    public static class Mage implements Character {
         private String name;
         private int level;
+        private int atk;
         private int maxHP;
         private int currentHP;
         private int maxMana;
@@ -88,6 +90,7 @@ public class Main {
         public void updateStat() {
             maxHP = 100 + 10 * level;
             maxMana = 50 + 20 * level;
+            atk = 10;
             currentHP = maxHP;
             currentMana = maxMana;
             // Update other stats...
@@ -105,12 +108,20 @@ public class Main {
                 System.out.println("Activate : "+name+"!!!");
             }else{System.out.println("not enough mana");}
         }
+
+        @Override
+        public void attack(Character target) {
+        System.out.println(name + " casts a spell on ");
+        // Add logic for dealing damage to the target character
+        target.takeDamage(20); // Adjust damage as needed
+    }
     }
 
     // Concrete Warrior Character
-    public static class Warrior implements RPGCharacter {
+    public static class Warrior implements Character {
         private String name;
         private int level;
+        private int atk;
         private int maxHP;
         private int maxMana;
         private int currentMana;
@@ -147,7 +158,6 @@ public class Main {
 
         @Override
         public void showStatus() {
-            updateStat();
             System.out.println("Level: " + level);
             System.out.println("HP: " + currentHP + "/" + maxHP);
             System.out.println("Mana: " + currentMana + "/" + maxMana);
@@ -175,6 +185,7 @@ public class Main {
         public void updateStat() {
             maxHP = 100 + 10 * level;
             maxMana = 10 + 5 * level;
+            atk = 10;
             currentHP = maxHP;
             currentMana = maxMana;
             // Update other stats...
@@ -189,10 +200,16 @@ public class Main {
         public void Hpbuff(){
             currentHP += 20; 
         }
+        @Override
+        public void attack(Character target) {
+        System.out.println(name + " swings a sword at ");
+        // Add logic for dealing damage to the target character
+        target.takeDamage(30); // Adjust damage as needed
+        }
     }
 
     // Concrete Helmets Accessory
-    public static class Helmet implements RPGAccessory {
+    public static class Helmet implements Accessory {
         private int level;
         private boolean equipped;
 
@@ -227,10 +244,11 @@ public class Main {
         public boolean isEquipped() {
             return equipped;
         }
+        
     }
 
     // Concrete Boots Accessory
-    public static class SpeedyBoots implements RPGAccessory {
+    public static class SpeedyBoots implements Accessory {
         private int level;
         private boolean equipped;
 
@@ -271,32 +289,34 @@ public class Main {
     public static class Lab05 {
         public static void main(String[] args) {
             // Create Mage character
-            RPGCharacter fireMage = new Mage("Mage", 1, 8);
+            Character fireMage = new Mage("Mage", 1, 8);
 
             // Level up Mage and show status
             fireMage.levelUp();
             fireMage.showStatus();
 
             // Create Warrior character
-            RPGCharacter War1 = new Warrior("Warrior");
+            Character War1 = new Warrior("Warrior");
 
             // Level up Warrior and show status
             War1.levelUp();
             War1.showStatus();
 
             // Create Helmet accessory
-            RPGAccessory steelHelmets = new Helmet();
+            Accessory steelHelmets = new Helmet();
 
             // Level up Helmet and show status
             steelHelmets.levelUp();
             steelHelmets.showStatus();
 
             // Create SpeedyBoots accessory
-            RPGAccessory speedyBoots = new SpeedyBoots();
+            Accessory speedyBoots = new SpeedyBoots();
 
             // Level up SpeedyBoots and show status
             speedyBoots.levelUp();
             speedyBoots.showStatus();
+            fireMage.attack(War1);
+            War1.showStatus();
         }
     }
 }
