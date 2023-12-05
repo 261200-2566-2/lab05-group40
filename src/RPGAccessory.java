@@ -3,6 +3,7 @@ public class RPGAccessory {
     protected boolean equipped;
     public void levelUp() {
         level++;
+        
     }
     void showLevel(){}
 
